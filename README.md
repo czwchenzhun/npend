@@ -10,28 +10,32 @@
 <h3>Usage</h3>
 <div style="background-color:#f9f9f9;border:2px solid #d3d3d3;">
 	<pre>
-#! -*- coding:utf-8 -*-
+    #! -*- coding:utf-8 -*-
+    
+    from npend import NpendWriter, NpendReader
+    import numpy as np
+    
+    if __name__=="__main__":
+        filePath="test.npd"
+        nw=NpendWriter(filePath)
 
-from npend import NpendWriter, NpendReader
-import numpy as np
+        # Write an array that has three dimensions.
+        arr=np.random.random((34,5,6))
+        nw.append(arr)
 
-if __name__=="__main__":
-    filePath="test.npd"
-    nw=NpendWriter(filePath)
-    <a># Write an array that has three dimensions.</a>
-    arr=np.random.random((34,5,6))
-    nw.append(arr)
-    <a># Write an array with three dimensions, </a>
-    <a># and keep the size of the last two dimensions the same as the data written before.</a>
-    arr=np.random.random((10,5,6))
-    nw.append(arr)
-    <a>#Write an array with two dimensions.</a>
-    arr=np.random.random((5,6))
-    nw.append(arr)
-    nw.close()
-    nr=NpendReader(filePath)
-    <a># Load numpy array from file. </a>
-    arr=nr.read()
-    print(arr.shape,arr.dtype)
+        # Write an array with three dimensions, 
+        # and keep the size of the last two dimensions the same as the data written before.
+        arr=np.random.random((10,5,6))
+        nw.append(arr)
+
+        # Write an array with two dimensions.
+        arr=np.random.random((5,6))
+        nw.append(arr)
+        nw.close()
+
+        nr=NpendReader(filePath)
+        # Load numpy array from file. 
+        arr=nr.read()
+        print(arr.shape,arr.dtype)
 	</pre>
 </div>
