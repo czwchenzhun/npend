@@ -1,2 +1,5 @@
 .idea/
 *.npd
+build/
+dist/
+npend.egg-info/
