@@ -148,7 +148,10 @@ class NpendWriter:
 
     def __writeDontExist__(self,arr):
         self.fp.seek(0, 2)
-        self.shape = arr.shape
+        if str(arr).isnumeric():
+            self.shape = (1,)
+        else:
+            self.shape = arr.shape
         self.dtype = str(arr.dtype)
         header = self.__constructHeader__(self.dtype, self.shape)
         self.fp.write(header)
