@@ -92,6 +92,15 @@ class NpendReader:
             ls.append(num)
         self._shape = tuple(ls)
 
+def is_number(str):
+    try:
+        if str == 'NaN':
+            return False
+        float(str)
+        return True
+    except ValueError:
+        return False
+
 class NpendWriter:
     def __init__(self,filePath):
         """[Constructor of NpendWriter. Construct an NpendWriter object to write the numpy array, data will save to filePath.]
@@ -148,7 +157,7 @@ class NpendWriter:
 
     def __writeDontExist__(self,arr):
         self.fp.seek(0, 2)
-        if str(arr).isnumeric():
+        if is_number(str(arr)):
             self.shape = (1,)
         else:
             self.shape = arr.shape
